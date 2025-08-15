@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block content %}
+<h2>Админ-панель</h2>
+<form method="post" action="{{ url_for('admin_settings') }}">
+  <label class="row"><input type="checkbox" name="whatsapp_global" {% if settings.get('whatsapp_global')=='1' %}checked{% endif %}> WhatsApp включен</label>
+  <label class="row"><input type="checkbox" name="allow_calls" {% if settings.get('allow_calls')=='1' %}checked{% endif %}> Кнопка Позвонить</label>
+  <button class="btn">Сохранить</button>
+</form>
+<h3>Последние товары</h3>
+<table class="tbl"><tr><th>ID</th><th>Название</th><th>Цена</th><th></th></tr>
+{% for l in listings %}<tr><td>{{ l['id'] }}</td><td>{{ l['title'] }}</td><td>{{ '%.0f'|format(l['price'] or 0) }}</td>
+<td><form method="post" action="{{ url_for('admin_del', lid=l['id']) }}" onsubmit="return confirm('Удалить?')"><button class="btn">Удалить</button></form></td></tr>{% endfor %}
+</table>
+{% endblock %}

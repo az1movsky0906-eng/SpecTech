@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block content %}
+<article class="detail">
+  <img class="big" src="/uploads/{{ row['image'] or 'sample1.png' }}">
+  <div class="info">
+    <h2>{{ row['title'] }}</h2>
+    <div class="price">{{ '%.0f'|format(row['price']) }} c.</div>
+    <div class="meta">Бренд: {{ row['brand_name'] or '—' }} • Категория: {{ row['cat_name'] or '—' }}</div>
+    <p>{{ row['description'] }}</p>
+    <div class="actions">
+      {% if call_on %}<a class="btn" href="tel:{{ row['seller_phone'] }}">Позвонить</a>{% endif %}
+      {% if wa_on %}<a class="btn" target="_blank" href="https://wa.me/{{ row['seller_whatsapp'] }}">WhatsApp</a>{% endif %}
+    </div>
+  </div>
+</article>
+{% endblock %}
