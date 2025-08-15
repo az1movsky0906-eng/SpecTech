@@ -1,0 +1,2 @@
+# SpecTech
+Spec
