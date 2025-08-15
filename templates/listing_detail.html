@@ -1,6 +1,6 @@
 {% extends "base.html" %}{% block content %}
 <article class="detail">
-  <img class="big" src="/uploads/{{ row['image'] or 'sample1.png' }}">
+  <img class="big" src="{{ url_for('static', filename='uploads/' ~ (row['image'] or 'sample1.png')) }}">
   <div class="info">
     <h2>{{ row['title'] }}</h2>
     <div class="price">{{ '%.0f'|format(row['price']) }} c.</div>
