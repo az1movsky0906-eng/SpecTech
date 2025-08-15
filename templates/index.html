@@ -6,5 +6,6 @@
   <select name="category"><option value="">Все категории</option>{% for c in categories %}<option value="{{ c['id'] }}" {% if cat_id and cat_id|int==c['id'] %}selected{% endif %}>{{ c['name'] }}</option>{% endfor %}</select>
   <button>Искать</button>
 </form>
-<div class="grid">{% for r in rows %}<a class="card" href="{{ url_for('listing', lid=r['id']) }}"><img src="/uploads/{{ r['image'] or 'sample1.png' }}"><div class="title">{{ r['title'] }}</div><div class="meta">{{ r['brand_name'] or '—' }} • {{ '%.0f'|format(r['price']) }} c.</div></a>{% else %}<div>Пока нет товаров.</div>{% endfor %}</div>
+<div class="grid">{% for r in rows %}<a class="card" href="{{ url_for('listing', lid=r['id']) }}"><<img src="{{ url_for('static', filename='uploads/' ~ (r['image'] or 'sample1.png')) }}">
+ src="/uploads/{{ r['image'] or 'sample1.png' }}"><div class="title">{{ r['title'] }}</div><div class="meta">{{ r['brand_name'] or '—' }} • {{ '%.0f'|format(r['price']) }} c.</div></a>{% else %}<div>Пока нет товаров.</div>{% endfor %}</div>
 {% endblock %}
